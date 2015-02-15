@@ -7,6 +7,20 @@ var app = express();
 app.use(express.bodyParser());
 
 var Appointment = require('./models/appointment');
+var Client = require('./models/client');
+var Employee = require('./models/employee');
+var Type = require('./models/type');
+
+var type1 = new Type({_id:1,type: "Technician"});
+var type2 = new Type({_id:2,type: "Owner"});
+
+type1.save(function (err) {
+	if (err) return handleError(err);
+ });
+ 
+ type2.save(function (err) {
+	if (err) return handleError(err);
+ });
 
 // Configure express
 app.configure('development', function() {
@@ -28,6 +42,12 @@ app.get('/', function(req, res) {
 
 app.get('/appointments', function(req, res) {
   Appointment.find(function(err, result) {
+    res.send(result);
+  });
+});
+
+app.get('/types', function(req, res) {
+  Type.find(function(err, result) {
     res.send(result);
   });
 });
