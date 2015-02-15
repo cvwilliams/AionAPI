@@ -1,5 +1,4 @@
 // Requires
-
 var express = require('express');
 var mongoose = require ("mongoose");
 
@@ -11,6 +10,8 @@ var Client = require('./models/client');
 var Employee = require('./models/employee');
 var Type = require('./models/type');
 
+
+/*
 var type1 = new Type({_id:1,type: "Technician"});
 var type2 = new Type({_id:2,type: "Owner"});
 
@@ -43,6 +44,7 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  tom.save(function (err) {
 	if (err) return handleError(err);
  });
+ */
  
 // Configure express
 app.configure('development', function() {
@@ -86,8 +88,8 @@ app.get('/employees', function(req, res) {
   });
 });
 
-app.get('/appointments/:notes', function(req, res) {
-  Appointment.findOne({'notes': req.params.notes}, function(err, result) {
+app.get('/appointments/:id', function(req, res) {
+  Appointment.findOne({'_id': req.params.id}, function(err, result) {
     if (err) {
       res.status(500);
       res.send(err);
@@ -97,10 +99,11 @@ app.get('/appointments/:notes', function(req, res) {
   });
 });
 
+/*
 app.post('/appointments', function(req, res) {
-  new Appointment({notes: req.body.notes}).save();
+  new Appointment({_id: req.body.notes}).save();
   res.send({'new appointment' : req.body.notes});
-});
+});*/
 
 // startup server
 port = process.env.PORT || 5000;
