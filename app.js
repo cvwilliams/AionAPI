@@ -99,11 +99,11 @@ app.get('/appointments/:id', function(req, res) {
   });
 });
 
-/*
+
 app.post('/appointments', function(req, res) {
-  new Appointment({_id: req.body.notes}).save();
+  new Appointment({notes: req.body.notes}).save();
   res.send({'new appointment' : req.body.notes});
-});*/
+});
 
 // startup server
 port = process.env.PORT || 5000;
