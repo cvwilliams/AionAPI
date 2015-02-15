@@ -9,7 +9,7 @@ var employeeSchema= new Schema({
 	employee_type: { type: Number, ref: 'Type' }
 });
 
-clientSchema.virtual('employee_id').get(function() {
+employeeSchema.virtual('employee_id').get(function() {
     return this._id;
 });
 
