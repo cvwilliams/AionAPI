@@ -13,4 +13,8 @@ var appointmentSchema= new Schema({
 	cancelled: Boolean
 });
 
+appointmentSchema.virtual('appointment_id').get(function() {
+    return this._id;
+});
+
 module.exports = mongoose.model('Appointment', appointmentSchema);
