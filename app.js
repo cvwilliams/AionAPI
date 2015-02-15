@@ -21,7 +21,29 @@ type1.save(function (err) {
  type2.save(function (err) {
 	if (err) return handleError(err);
  });
+ 
+var john = new Employee({first_name: 'John',last_name: 'Tucker',phone_num:'18009999999', employee_type:1});
+var cady = new Employee({first_name: 'Cady',last_name: 'Heron',phone_num:'18009999999', employee_type:2});
 
+john.save(function (err) {
+	if (err) return handleError(err);
+ });
+ 
+ cady.save(function (err) {
+	if (err) return handleError(err);
+ });
+
+var tim = new Client({first_name: 'Timmy',last_name: 'Turner',phone_num:'18009999999', address: '1600 Pennsylvania Ave.',city: 'Washington'});
+var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'18009999999', address: '1601 Pennsylvania Ave.',city: 'Washington'});
+ 
+ tim.save(function (err) {
+	if (err) return handleError(err);
+ });
+ 
+ tom.save(function (err) {
+	if (err) return handleError(err);
+ });
+ 
 // Configure express
 app.configure('development', function() {
   mongoose.connect('mongodb://localhost/appointments');
@@ -48,6 +70,18 @@ app.get('/appointments', function(req, res) {
 
 app.get('/types', function(req, res) {
   Type.find(function(err, result) {
+    res.send(result);
+  });
+});
+
+app.get('/clients', function(req, res) {
+  Client.find(function(err, result) {
+    res.send(result);
+  });
+});
+
+app.get('/employees', function(req, res) {
+  Employee.find(function(err, result) {
     res.send(result);
   });
 });

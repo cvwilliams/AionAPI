@@ -6,7 +6,8 @@ var appointmentSchema= new Schema({
 	client_id: { type: ObjectId, ref: 'Client' },
 	employee_id: { type: ObjectId, ref: 'Employee' },
 	notes: String,
-	geocode: {type: [], index: '2d'},
+	lat: Number,
+	lon: Number,
 	timein: Date,
 	timeout: Date,
 	cancelled: Boolean
