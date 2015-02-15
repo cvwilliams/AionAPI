@@ -1,0 +1,15 @@
+{"name": "wearable.api",
+  "description": "example api for creating wearable for odyssey project",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "mongoose": "3.6.x",
+    "supertest": "0.7.0",
+    "mocha": "1.11.0"
+  },
+  "scripts": {
+    "test" : "mocha",
+    "start": "app.js"
+  }
+}
