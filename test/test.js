@@ -2,7 +2,7 @@ var request = require('supertest'),
     express = require('express');
 
 var app = require('../app.js');
-
+/*
 describe('POST', function(){
     this.timeout(15000);
   it('responds with a json success message', function(done){
@@ -13,7 +13,7 @@ describe('POST', function(){
     .send({'notes': 'test'})
     .expect(200, done);
   });
-});
+});*/
 
 describe('GET', function(){
     this.timeout(15000);
