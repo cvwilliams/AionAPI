@@ -5,7 +5,6 @@ var ObjectId = Schema.ObjectId;
 var appointmentSchema= new Schema({
 	client_id: ObjectId,
 	employee_id: ObjectId,
-	visit_reason: ObjectId,
 	notes: String,
 	lat: Number,
 	lon: Number,

@@ -46,6 +46,8 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  });
  */
  
+ var landscape = new Appointment(client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653);
+ 
 // Configure express
 app.configure('development', function() {
   mongoose.connect('mongodb://localhost/appointments');
