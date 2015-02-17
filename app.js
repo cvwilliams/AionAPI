@@ -120,7 +120,7 @@ app.put('/appointments/id', function(req, res) {
 		  return res.send(product);
 		});
 	}
-	else if(time_type == "timeout")){
+	else if(time_type == "timeout"){
 		app.timeout = Date.now();
 		return app.save(function (err) {
 		  if (!err) {
