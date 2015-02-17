@@ -107,28 +107,28 @@ app.get('/appointments/:id', function(req, res) {
 
 
 app.put('/appointments/id', function(req, res) {
-  return Appointment.findById(req.params.id, function (err, app) {
+  return Appointment.findById(req.params.id, function (err, appointment) {
     var time_type = req.body.time;
 	if(time_type == "timein"){
-		app.timein = Date.now();
-		return app.save(function (err) {
+		appointment.timein = Date.now();
+		return appointment.save(function (err) {
 		  if (!err) {
 			console.log("updated");
 		  } else {
 			console.log(err);
 		  }
-		  return res.send(product);
+		  return res.send(appointment);
 		});
 	}
 	else if(time_type == "timeout"){
-		app.timeout = Date.now();
-		return app.save(function (err) {
+		appointment.timeout = Date.now();
+		return appointment.save(function (err) {
 		  if (!err) {
 			console.log("updated");
 		  } else {
 			console.log(err);
 		  }
-		  return res.send(product);
+		  return res.send(appointment);
 		});
 	}
   });
