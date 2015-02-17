@@ -106,9 +106,34 @@ app.get('/appointments/:id', function(req, res) {
 });
 
 
-app.post('/appointments', function(req, res) {
-  new Appointment({notes: req.body.notes}).save();
-  res.send({'new appointment' : req.body.notes});
+app.put('/appointments/id', function(req, res) {
+  return Appointment.findById(req.params.id, function (err, app) {
+    var time_type = req.body.time;
+	if(time_type == "timein"){
+		app.timein = Date.now();
+		return app.save(function (err) {
+		  if (!err) {
+			console.log("updated");
+		  } else {
+			console.log(err);
+		  }
+		  return res.send(product);
+		});
+	}
+	else if(time_type == "timeout")){
+		app.timeout = Date.now();
+		return app.save(function (err) {
+		  if (!err) {
+			console.log("updated");
+		  } else {
+			console.log(err);
+		  }
+		  return res.send(product);
+		});
+	}
+  });
+  //new Appointment({notes: req.body.notes}).save();
+  //res.send({'new appointment' : req.body.notes});
 });
 
 // startup server
