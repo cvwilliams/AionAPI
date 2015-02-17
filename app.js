@@ -106,35 +106,25 @@ app.get('/appointments/:id', function(req, res) {
 });
 
 
-app.put('/appointments/id', function(req, res) {
-  return Appointment.findById(req.params.id, function (err, appointment) {
-    var time_type = req.body.time;
-	if(time_type == "timein"){
-		appointment.timein = Date.now();
-		return appointment.save(function (err) {
-		  if (!err) {
-			console.log("updated");
-		  } else {
-			console.log(err);
-		  }
-		  return res.send(appointment);
+app.put('/appointments/:id', function(req, res) {
+	Appointment.findById(req.params.id, function(err, result) {
+	  if (!result)
+		return next(new Error('Could not load Document'));
+	  else {
+		// do your updates here
+		result.timein = new Date.now();
+
+		p.save(function(err) {
+		  if (err)
+			console.log('error')
+		  else
+			console.log('success')
 		});
-	}
-	else if(time_type == "timeout"){
-		appointment.timeout = Date.now();
-		return appointment.save(function (err) {
-		  if (!err) {
-			console.log("updated");
-		  } else {
-			console.log(err);
-		  }
-		  return res.send(appointment);
-		});
-	}
-  });
+	  }
+	});
+});
   //new Appointment({notes: req.body.notes}).save();
   //res.send({'new appointment' : req.body.notes});
-});
 
 // startup server
 port = process.env.PORT || 5000;
