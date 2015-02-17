@@ -114,7 +114,7 @@ app.put('/appointments/:id', function(req, res) {
 		// do your updates here
 		result.timein = new Date.now();
 
-		p.save(function(err) {
+		result.save(function(err) {
 		  if (err)
 			console.log('error')
 		  else
