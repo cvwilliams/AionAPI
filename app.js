@@ -107,20 +107,16 @@ app.get('/appointments/:id', function(req, res) {
 
 
 app.put('/appointments/:id', function(req, res) {
-	Appointment.findById(req.params.id, function(err, result) {
-	  if (!result)
-		return next(new Error('Could not load Document'));
-	  else {
-		// do your updates here
-		result.timein = new Date.now();
-
-		result.save(function(err) {
-		  if (err)
-			console.log('error')
-		  else
-			console.log('success')
+	Appointment.findById(req.params.id, function (err, result) {
+		result.timein = "hello yams";
+		return result.save(function (err) {
+		  if (!err) {
+			console.log("updated");
+		  } else {
+			console.log(err);
+		  }
+		  return res.send(result);
 		});
-	  }
 	});
 });
   //new Appointment({notes: req.body.notes}).save();
