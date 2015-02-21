@@ -91,7 +91,7 @@ app.get('/clients', function(req, res) {
 app.get('/employees', function(req, res) {
   Employee.find(function(err, result) {
     res.send(result);
-  });
+  }).populate('employee.employee_type');
 });
 
 app.get('/appointments/:id', function(req, res) {
