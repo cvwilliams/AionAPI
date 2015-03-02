@@ -111,7 +111,7 @@ app.get('/appointments/:id', function(req, res) {
 });
 
 app.get('/appointments/:date', function(req, res) {
-  Appointment.findOne({'date': req.params.date}, function(err, result) {
+  Appointment.find({date: req.params.date}, function(err, result) {
     if (err) {
       res.status(500);
       res.send(err);
