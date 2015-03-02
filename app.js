@@ -99,6 +99,7 @@ app.get('/employees', function(req, res) {
   }).populate('employee.employee_type');
 });
 
+/*
 app.get('/appointments/:id', function(req, res) {
   Appointment.findOne({'_id': req.params.id}, function(err, result) {
     if (err) {
@@ -108,7 +109,7 @@ app.get('/appointments/:id', function(req, res) {
       res.send({result: result});
     }
   });
-});
+});*/
 
 app.get('/appointments/:date', function(req, res) {
   Appointment.find({date: req.params.date}, function(err, result) {
