@@ -46,8 +46,13 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  });
  */
  
- var landscape = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653});
+ var landscape = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400000});
+ var landscape2 = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400000});
   landscape.save(function (err) {
+	if (err) return handleError(err);
+ });
+ 
+   landscape2.save(function (err) {
 	if (err) return handleError(err);
  });
  
@@ -96,6 +101,17 @@ app.get('/employees', function(req, res) {
 
 app.get('/appointments/:id', function(req, res) {
   Appointment.findOne({'_id': req.params.id}, function(err, result) {
+    if (err) {
+      res.status(500);
+      res.send(err);
+    } else {
+      res.send({result: result});
+    }
+  });
+});
+
+app.get('/appointments/:date', function(req, res) {
+  Appointment.findOne({'date': req.params.date}, function(err, result) {
     if (err) {
       res.status(500);
       res.send(err);
