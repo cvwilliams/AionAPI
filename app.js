@@ -27,37 +27,46 @@ app.configure('production', function() {
 
 // GET Routes
 app.get('/', function(req, res) {
-  res.send({'version' : '1.0.0'});
+  res.send({'version' : '1.0.1'});
 });
 
 app.get('/appointments', function(req, res) {
   Appointment.find(function(err, result) {
-	if(err){
-		res.status 
-		res.send(err);
-	}
 	res.status(200);
-    res.send({data: result,
-					status: 200
+    res.send({status: 200,
+					URL: '/appointments',
+					data: result			
 	});
   });
 });
 
 app.get('/types', function(req, res) {
   Type.find(function(err, result) {
-    res.send(result);
+    res.status(200);
+    res.send({status: 200,
+					URL: '/types',
+					data: result			
+	});
   });
 });
 
 app.get('/clients', function(req, res) {
   Client.find(function(err, result) {
-    res.send(result);
+    res.status(200);
+    res.send({status: 200,
+					URL: '/clients',
+					data: result			
+	});
   });
 });
 
 app.get('/employees', function(req, res) {
   Employee.find(function(err, result) {
-    res.send(result);
+    res.status(200);
+    res.send({status: 200,
+					URL: '/employees',
+					data: result			
+	});
   });
 });
 
@@ -65,9 +74,16 @@ app.get('/appointments/:date', function(req, res) {
   Appointment.find({date: req.params.date}, function(err, result) {
     if (err) {
       res.status(500);
-      res.send(err);
+      res.send({status: 500
+						url: '/appointments/:date',
+						error: err
+				});
     } else {
-      res.send({data: result});
+      	res.status(200);
+		res.send({status: 200,
+					URL: '/appointments/:date',
+					data: result			
+	});
     }
   });
 });
