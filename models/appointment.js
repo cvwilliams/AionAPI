@@ -8,7 +8,7 @@ var appointmentSchema= new Schema({
 	notes: String,
 	lat: Number,
 	lon: Number,
-	timein: Date,
+	timein: Number,
 	timeout: Date,
 	cancelled: Date,
 	date: Number
