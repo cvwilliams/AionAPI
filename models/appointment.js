@@ -9,9 +9,9 @@ var appointmentSchema= new Schema({
 	lat: Number,
 	lon: Number,
 	timein: Date,
-	timeout: Number,
-	cancelled: Number,
-	date: Number
+	timeout: Date,
+	cancelled: Date,
+	date: Date
 });
 
 appointmentSchema.virtual('appointment_id').get(function() {
