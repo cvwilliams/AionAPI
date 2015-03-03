@@ -74,8 +74,8 @@ app.get('/appointments/:date', function(req, res) {
   Appointment.find({date: req.params.date}, function(err, result) {
     if (err) {
       res.status(500);
-      res.send({status: 500
-						url: '/appointments/:date',
+      res.send({status: 500,
+						URL: '/appointments/:date',
 						error: err
 				});
     } else {
