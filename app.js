@@ -79,7 +79,11 @@ app.get('/appointments/:date', function(req, res) {
 						URL: '/appointments/:date',
 						error: err
 				});
-    } else {
+    } 
+	else if(!result){
+		res.status(404);
+	}
+	else {
       	res.status(200);
 		res.send({status: 200,
 					URL: '/appointments/:date',
