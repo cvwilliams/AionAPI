@@ -125,7 +125,7 @@ app.get('/appointments/:date', function(req, res) {
 
 app.put('/appointments/:id/in', function(req, res) {
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timein = Date.now();
+		result.timein = new Date(Date.now());
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
