@@ -45,7 +45,7 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
 	if (err) return handleError(err);
  });
  */
- 
+ /*
  var landscape = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400010});
  var landscape2 = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400013});
   landscape.save(function (err) {
@@ -54,7 +54,7 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  
    landscape2.save(function (err) {
 	if (err) return handleError(err);
- });
+ });*/
  
  
 // Configure express
@@ -72,7 +72,7 @@ app.configure('production', function() {
 
 // Routes
 app.get('/', function(req, res) {
-  res.send({'version' : '0.0.1'});
+  res.send({'version' : '1.0.0'});
 });
 
 app.get('/appointments', function(req, res) {
@@ -123,9 +123,37 @@ app.get('/appointments/:date', function(req, res) {
 });
 
 
-app.put('/appointments/:id', function(req, res) {
+app.put('/appointments/:id/in', function(req, res) {
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timein = "hello yams";
+		result.timein = Date.now;
+		return result.save(function (err) {
+		  if (!err) {
+			console.log("updated");
+		  } else {
+			console.log(err);
+		  }
+		  return res.send(result);
+		});
+	});
+});
+
+app.put('/appointments/:id/out', function(req, res) {
+	Appointment.findById(req.params.id, function (err, result) {
+		result.timeout = Date.now;
+		return result.save(function (err) {
+		  if (!err) {
+			console.log("updated");
+		  } else {
+			console.log(err);
+		  }
+		  return res.send(result);
+		});
+	});
+});
+
+app.put('/appointments/:id/cancel', function(req, res) {
+	Appointment.findById(req.params.id, function (err, result) {
+		result.cancelled = Date.now;
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
