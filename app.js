@@ -125,7 +125,7 @@ app.get('/appointments/:date', function(req, res) {
 
 app.put('/appointments/:id/in', function(req, res) {
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timein = Date.now;
+		result.timein = Date.now();
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
@@ -139,7 +139,7 @@ app.put('/appointments/:id/in', function(req, res) {
 
 app.put('/appointments/:id/out', function(req, res) {
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timeout = Date.now;
+		result.timeout = Date.now();
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
@@ -153,7 +153,7 @@ app.put('/appointments/:id/out', function(req, res) {
 
 app.put('/appointments/:id/cancel', function(req, res) {
 	Appointment.findById(req.params.id, function (err, result) {
-		result.cancelled = Date.now;
+		result.cancelled = Date.now();
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
