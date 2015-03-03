@@ -71,8 +71,7 @@ app.get('/employees', function(req, res) {
 });
 
 app.get('/appointments/:date', function(req, res) {
-	var date = new Date(req.params.date);
-  Appointment.find({date: date}, function(err, result) {
+  Appointment.find({date: req.params.date}, function(err, result) {
     if (err) {
       res.status(500);
       res.send({status: 500,
