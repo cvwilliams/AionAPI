@@ -27,7 +27,7 @@ app.configure('production', function() {
 
 // GET Routes
 app.get('/', function(req, res) {
-  res.send({'version' : '1.0.1'});
+  res.send({'version' : '1.1.0'});
 });
 
 app.get('/appointments', function(req, res) {
@@ -37,9 +37,8 @@ app.get('/appointments', function(req, res) {
 					URL: '/appointments',
 					data: result			
 	});*/
-	Appointment.find().populate('client_id').exec(function (err, result){
-		res.status(200);
-		res.send({status: 200,
+	Appointment.find().populate('client','employee').exec(function (err, result){
+		res.send({status: 304,
 						URL: '/appointments',
 						data: result
 		});
