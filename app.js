@@ -37,7 +37,7 @@ app.get('/appointments', function(req, res) {
 					URL: '/appointments',
 					data: result			
 	});*/
-	Appointment.find().populate().exec(function (err, result){
+	Appointment.find().populate('client_id').exec(function (err, result){
 		res.status(200);
 		res.send({status: 200,
 						URL: '/appointments',
