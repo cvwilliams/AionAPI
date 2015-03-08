@@ -32,8 +32,9 @@ app.get('/', function(req, res) {
 
 app.get('/appointments', function(req, res) {
 	Appointment.find().populate('client_id employee_id','first_name last_name').exec(function (err, result){
-		res.send({status: 200,
+		res.send(200,{status: 200,
 						URL: '/appointments',
+						request: 'GET',
 						data: result
 		});
 	});
@@ -41,9 +42,9 @@ app.get('/appointments', function(req, res) {
 
 app.get('/types', function(req, res) {
   Type.find(function(err, result) {
-    res.status(200);
     res.send({status: 200,
 					URL: '/types',
+					request: 'GET',
 					data: result			
 	});
   });
@@ -72,8 +73,7 @@ app.get('/employees', function(req, res) {
 app.get('/appointments/:date', function(req, res) {
   Appointment.find({date: req.params.date}, function(err, result) {
     if (err) {
-      res.status(500);
-      res.send({status: 500,
+      res.send(500,{status: 500,
 						URL: '/appointments/:date',
 						error: err
 				});
