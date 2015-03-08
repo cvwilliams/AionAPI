@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var appointmentSchema= new Schema({
-	client_id: ObjectId,
+	client_id: {type: ObjectId, ref: 'Client'},
 	employee_id: ObjectId,
 	notes: String,
 	lat: Number,
