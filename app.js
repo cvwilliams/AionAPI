@@ -31,16 +31,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/appointments', function(req, res) {
-  Appointment.find(function(err, result) {
-	res.status(200);
-	Appointment.find().populate('client_id').exec(function (err, result){
-		res.send({status: 304,
+	Appointment.find().populate('client_id',['irst_name','last_name']).exec(function (err, result){
+		res.send({status: 200,
 						URL: '/appointments',
 						data: result
 		});
 	});
   });
-});
 
 app.get('/types', function(req, res) {
   Type.find(function(err, result) {
