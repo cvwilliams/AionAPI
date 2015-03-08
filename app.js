@@ -31,19 +31,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/appointments', function(req, res) {
-  /*Appointment.find(function(err, result) {
+  Appointment.find(function(err, result) {
 	res.status(200);
-    res.send({status: 200,
-					URL: '/appointments',
-					data: result			
-	});*/
-	Appointment.find().populate('client_id').populate('employee_id').exec(function (err, result){
+	Appointment.find().populate('client_id').exec(function (err, result){
 		res.send({status: 304,
 						URL: '/appointments',
 						data: result
 		});
 	});
   });
+});
 
 app.get('/types', function(req, res) {
   Type.find(function(err, result) {
