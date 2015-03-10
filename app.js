@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/appointments', function(req, res) {
-	Appointment.find().populate('client_id employee_id','first_name last_name').exec(function (err, result){
+	Appointment.find().populate('client_id employee_id').exec(function (err, result){
 		res.send(200,{status: 200,
 						URL: '/appointments',
 						request: 'GET',
@@ -71,22 +71,33 @@ app.get('/employees', function(req, res) {
 });
 
 app.get('/appointments/:date', function(req, res) {
-  Appointment.find({date: req.params.date}, function(err, result) {
+  /*Appointment.find().populate('client_id employee_id').exec(function (err, result){
+		res.send(200,{status: 200,
+						URL: '/appointments',
+						request: 'GET',
+						data: result
+		});
+	});
+	*/
+  
+  Appointment.find({date: req.params.date}).populate('client_id employee_id').exec(function (err, result){
     if (err) {
-      res.send(500,{status: 500,
+      res.send(500,
+						{status: 500,
 						URL: '/appointments/:date',
 						error: err
 				});
     } 
-	else if(!result){
-		res.status(404);
+	else if (result.length == 0){
+		res.send(404,{status: 404,
+					URL: '/appointments/:date',
+					data: result
 	}
 	else {
-      	res.status(200);
-		res.send({status: 200,
+		res.send(200,{status: 200,
 					URL: '/appointments/:date',
 					data: result			
-	});
+		});
     }
   });
 });
