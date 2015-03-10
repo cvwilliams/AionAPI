@@ -92,6 +92,7 @@ app.get('/appointments/:date', function(req, res) {
 		res.send(404,{status: 404,
 					URL: '/appointments/:date',
 					data: result
+			});
 	}
 	else {
 		res.send(200,{status: 200,
