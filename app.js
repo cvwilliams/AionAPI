@@ -70,7 +70,7 @@ app.get('/employees', function(req, res) {
   });
 });
 
-app.get('/appointments/:date', function(req, res) {
+app.get('/appointments/:year/:month/:date', function(req, res) {
   /*Appointment.find().populate('client_id employee_id').exec(function (err, result){
 		res.send(200,{status: 200,
 						URL: '/appointments',
@@ -79,8 +79,11 @@ app.get('/appointments/:date', function(req, res) {
 		});
 	});
 	*/
+	var curr_date = req.params.year + "-" + req.params.month + "-" + req.params.date;
+	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
+	
   
-  Appointment.find({date: req.params.date}).populate('client_id employee_id').exec(function (err, result){
+  Appointment.find({"date": {"$gte": new Date(curr_date), "$lt": new Date(next_date)}}).populate('client_id employee_id').exec(function (err, result){
     if (err) {
       res.send(500,
 						{status: 500,
