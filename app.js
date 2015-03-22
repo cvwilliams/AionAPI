@@ -94,6 +94,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	else if (result.length == 0){
 		res.send(404,{status: 404,
 					URL: '/appointments/:date',
+					SentDate: curr_date,
 					data: result
 			});
 	}
