@@ -81,6 +81,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	*/
 	var curr_date = req.params.year + "-" + req.params.month + "-" + req.params.date;
 	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
+	var temp = new Date(curr_date);
 	
   
   Appointment.find().where('date').gte(new Date(curr_date)).populate('client_id employee_id').exec(function (err, result){
@@ -94,6 +95,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	else if (result.length == 0){
 		res.send(404,{status: 404,
 					URL: '/appointments/:date',
+					temp: temp,
 					data: result
 			});
 	}
