@@ -83,7 +83,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
 	
   
-  Appointment.find().where('date').gte(new Date(curr_date)).lt(new Date(next_date)).sort('date').populate('client_id employee_id').exec(function (err, result){
+  Appointment.find().where('date').gte(new Date(curr_date)).populate('client_id employee_id').exec(function (err, result){
     if (err) {
       res.send(500,
 						{status: 500,
