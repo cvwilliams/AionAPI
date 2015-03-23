@@ -82,11 +82,13 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	var curr_date = req.params.year + "-" + req.params.month + "-" + req.params.date;
 	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
 	var temp = new Date(curr_date);
+	var otemp = new Date(next_date);
 	
   
   Appointment
-	.where('lat')
-	.gte(32.897676)
+	.where('date')
+	.gte(temp)
+	.lt(otemp)
 	.populate('client_id employee_id')
 	.exec(function (err, result){
 		if (err) {
