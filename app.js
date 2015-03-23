@@ -84,28 +84,32 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	var temp = new Date(curr_date);
 	
   
-  Appointment.find().where('date').gte(new Date(curr_date)).populate('client_id employee_id').exec(function (err, result){
-    if (err) {
-      res.send(500,
-						{status: 500,
+  Appointment.find()
+	.where('date')
+	.gte(temp.toString())
+	.populate('client_id employee_id')
+	.exec(function (err, result){
+		if (err) {
+		  res.send(500,
+							{status: 500,
+							URL: '/appointments/:date',
+							error: err
+					});
+		} 
+		else if (result.length == 0){
+			res.send(404,{status: 404,
 						URL: '/appointments/:date',
-						error: err
+						temp: temp,
+						data: result
 				});
-    } 
-	else if (result.length == 0){
-		res.send(404,{status: 404,
-					URL: '/appointments/:date',
-					temp: temp,
-					data: result
+		}
+		else {
+			res.send(200,{status: 200,
+						URL: '/appointments/:date',
+						data: result			
 			});
-	}
-	else {
-		res.send(200,{status: 200,
-					URL: '/appointments/:date',
-					data: result			
-		});
-    }
-  });
+		}
+	  });
 });
 
 // PUT Routes
