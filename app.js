@@ -128,8 +128,9 @@ app.put('/appointments/:id/in', function(req, res) {
 });
 
 app.put('/appointments/:id/out', function(req, res) {
+	var timestamp = req.body.timestamp;
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timeout = Date.now();
+		result.timeout = timestamp;
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
