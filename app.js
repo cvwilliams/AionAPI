@@ -114,8 +114,9 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 
 // PUT Routes
 app.put('/appointments/:id/in', function(req, res) {
+	var timestamp = req.body.timestamp;
 	Appointment.findById(req.params.id, function (err, result) {
-		result.timein = new Date(Date.now());
+		result.timein = timestamp;
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
@@ -137,14 +138,15 @@ app.put('/appointments/:id/out', function(req, res) {
 		  } else {
 			console.log(err);
 		  }
-		  return res.send(timestamp);
+		  return res.send(result);
 		});
 	});
 });
 
 app.put('/appointments/:id/cancel', function(req, res) {
+	var timestamp = req.body.timestamp;
 	Appointment.findById(req.params.id, function (err, result) {
-		result.cancelled = Date.now();
+		result.cancelled = timestamp;
 		return result.save(function (err) {
 		  if (!err) {
 			console.log("updated");
