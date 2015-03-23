@@ -137,7 +137,7 @@ app.put('/appointments/:id/out', function(req, res) {
 		  } else {
 			console.log(err);
 		  }
-		  return res.send(result);
+		  return res.send(timestamp);
 		});
 	});
 });
