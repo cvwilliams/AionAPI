@@ -86,26 +86,26 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
   
   Appointment
 	.where('date')
-	.gte(temp.toString())
+	.gte(temp)
 	.populate('client_id employee_id')
 	.exec(function (err, result){
 		if (err) {
 		  res.send(500,
 							{status: 500,
-							URL: '/appointments/:date',
+							URL: '/appointments/:year/:month/:date',
 							error: err
 					});
 		} 
 		else if (result.length == 0){
 			res.send(404,{status: 404,
-						URL: '/appointments/:date',
+						URL: '/appointments/:year/:month/:date',
 						temp: temp,
 						data: result
 				});
 		}
 		else {
 			res.send(200,{status: 200,
-						URL: '/appointments/:date',
+						URL: '/appointments/:year/:month/:date',
 						data: result			
 			});
 		}
