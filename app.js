@@ -81,8 +81,8 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	*/
 	var curr_date = req.params.year + "-" + req.params.month + "-" + req.params.date;
 	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
-	var temp = new Date(curr_date);
-	var otemp = new Date(next_date);
+	var temp = new Date(req.params.year, req.params.month, req.params.date);
+	var otemp = new Date(req.params.year, req.params.month, ++req.params.date);
 	
   
   Appointment
