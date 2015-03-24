@@ -86,9 +86,10 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	
   
   Appointment
-	.where('date')
+	.find({date : { $gte : new Date(curr_date)}})
+	/*.where('date')
 	.gte(temp)
-	.lt(otemp)
+	.lt(otemp)*/
 	.populate('client_id employee_id')
 	.exec(function (err, result){
 		if (err) {
