@@ -85,28 +85,17 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	var otemp = new Date(req.params.year, req.params.month, ++req.params.date);
 	
   
-  Appointment.find({date : { $gte : new Date(curr_date)}}, function (err, result){
-		if (err) {
-		  res.send(500,
-							{status: 500,
-							URL: '/appointments/:year/:month/:date',
-							error: err
-					});
-		} 
-		else if (result.length == 0){
-			res.send(404,{status: 404,
-						URL: '/appointments/:year/:month/:date',
-						temp: temp,
-						data: result
-				});
-		}
-		else {
-			res.send(200,{status: 200,
-						URL: '/appointments/:year/:month/:date',
-						data: result			
-			});
-		}
-});
+	  Appointment.find({date:  { $gte : new Date(curr_date)}}, function (err, result){
+			if(err){
+				res.send(500,{status: 500,URL: '/appointments/:year/:month/:date',	error: err	});
+			}
+			else if (result.length == 0){
+				res.send(404,{status: 404,URL: '/appointments/:year/:month/:date',	temp: temp,data: result});
+			}
+			else {
+				res.send(200,{status: 200,URL: '/appointments/:year/:month/:date',data: result});
+			}
+	  });
 	/*.where('date')
 	.gte(temp)
 	.lt(otemp)
@@ -132,9 +121,9 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 						data: result			
 			});
 		}
-	  });
+	  });*/
 });
-*/
+
 // PUT Routes
 app.put('/appointments/:id/in', function(req, res) {
 	var timestamp = req.body.timestamp;
