@@ -86,10 +86,29 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	
   
   Appointment
-	.find({date : { $gte : new Date(curr_date)}})
+	.find({date : { $gte : new Date(curr_date)}}, function (err, result){
+		if (err) {
+		  res.send(500,
+							{status: 500,
+							URL: '/appointments/:year/:month/:date',
+							error: err
+					});
+		} 
+		else if (result.length == 0){
+			res.send(404,{status: 404,
+						URL: '/appointments/:year/:month/:date',
+						temp: temp,
+						data: result
+				});
+		}
+		else {
+			res.send(200,{status: 200,
+						URL: '/appointments/:year/:month/:date',
+						data: result			
+			});
 	/*.where('date')
 	.gte(temp)
-	.lt(otemp)*/
+	.lt(otemp)
 	.populate('client_id employee_id')
 	.exec(function (err, result){
 		if (err) {
@@ -114,7 +133,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 		}
 	  });
 });
-
+*/
 // PUT Routes
 app.put('/appointments/:id/in', function(req, res) {
 	var timestamp = req.body.timestamp;
