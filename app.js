@@ -85,8 +85,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 	var otemp = new Date(req.params.year, req.params.month, ++req.params.date);
 	
   
-  Appointment
-	.find({date : { $gte : new Date(curr_date)}}, function (err, result){
+  Appointment.find({date : { $gte : new Date(curr_date)}}, function (err, result){
 		if (err) {
 		  res.send(500,
 							{status: 500,
@@ -106,6 +105,8 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 						URL: '/appointments/:year/:month/:date',
 						data: result			
 			});
+		}
+});
 	/*.where('date')
 	.gte(temp)
 	.lt(otemp)
