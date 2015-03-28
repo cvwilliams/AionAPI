@@ -79,8 +79,8 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 		});
 	});
 	*/
-	var curr_date = req.params.year + "-" + req.params.month + "-" + req.params.date;
-	var next_date = req.params.year + "-" + req.params.month + "-" + ++req.params.date;
+	var curr_date = new Date(req.params.year + "-" + req.params.month + "-" + req.params.date);
+	var next_date = new Date(req.params.year + "-" + req.params.month + "-" + ++req.params.date);
 	
   
 	  Appointment.where('date')
@@ -98,7 +98,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 		else if (result.length == 0){
 			res.send(404,{status: 404,
 						URL: '/appointments/:year/:month/:date',
-						temp: temp,
+						temp: curr_date.getTime(),
 						data: result
 				});
 		}
