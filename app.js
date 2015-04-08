@@ -168,7 +168,7 @@ module.exports = app;
 
 //Sample Data
 
-/*
+
 var type1 = new Type({_id:1,type: "Technician"});
 var type2 = new Type({_id:2,type: "Owner"});
 
@@ -201,12 +201,12 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  tom.save(function (err) {
 	if (err) return handleError(err);
  });
- var landscape = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400010});
- var landscape2 = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653, date: 1425272400013});
+ var landscape = new Appointment({client_id: tim._id,employee_id: john._id, notes: "1. Clean the yard\n2.Rake the leaves",lat: 38.897676,lon: -77.03653, date: 1425272400010});
+ var landscape2 = new Appointment({client_id: tim._id,employee_id: cady._id, notes: "Carefully spray the exterior with rodent repellent",lat: 40.742364,lon: -74.178593, date: 1425272400013});
   landscape.save(function (err) {
 	if (err) return handleError(err);
  });
  
    landscape2.save(function (err) {
 	if (err) return handleError(err);
- });*/
+ });
