@@ -181,7 +181,7 @@ type1.save(function (err) {
  });
  
 var john = new Employee({first_name: 'John',last_name: 'Tucker',phone_num:'18009999999', employee_type:1});
-var cady = new Employee({first_name: 'Cady',last_name: 'Heron',phone_num:'18009999999', employee_type:2});
+var cady = new Employee({first_name: 'Tony',last_name: 'Banks',phone_num:'18009999999', employee_type:2});
 
 john.save(function (err) {
 	if (err) return handleError(err);
@@ -201,7 +201,7 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  tom.save(function (err) {
 	if (err) return handleError(err);
  });
- var landscape = new Appointment({client_id: tim._id,employee_id: john._id, notes: "1. Clean the yard\n2.Rake the leaves",lat: 38.897676,lon: -77.03653, date: 1425272400010});
+ var landscape = new Appointment({client_id: tim._id,employee_id: cady._id, notes: "1. Clean the yard\n2.Rake the leaves",lat: 38.897676,lon: -77.03653, date: 1425272400010});
  var landscape2 = new Appointment({client_id: tim._id,employee_id: cady._id, notes: "Carefully spray the exterior with rodent repellent",lat: 40.742364,lon: -74.178593, date: 1425272400013});
   landscape.save(function (err) {
 	if (err) return handleError(err);
