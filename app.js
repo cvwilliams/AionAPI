@@ -168,7 +168,47 @@ module.exports = app;
 
 //Sample Data
 
+ var type1 = new Type({_id:1,type: "Technician"});
+ var type2 = new Type({_id:2,type: "Owner"});
+ 
+ type1.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+  
+  type2.save(function (err) {
+ 	if (err) return handleError(err);
+  });
 
+ var john = new Employee({first_name: 'John',last_name: 'Tucker',phone_num:'18009999999', employee_type:1});
+ var cady = new Employee({first_name: 'Cady',last_name: 'Heron',phone_num:'18009999999', employee_type:2});
+ 
+ john.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+  
+  cady.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+ 
+ var tim = new Client({first_name: 'Timmy',last_name: 'Turner',phone_num:'18009999999', address: '1600 Pennsylvania Ave.',city: 'Washington'});
+ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'18009999999', address: '1601 Pennsylvania Ave.',city: 'Washington'});
+  
+  tim.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+  
+  tom.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+  
+  
+ var landscape = new Appointment({client_id: "54e1114f0fa1f90300000003",employee_id: "54e1114f0fa1f90300000001", notes: "Test Note",lat: 38.897676,lon: -77.03653});
+ landscape.save(function (err) {
+ 	if (err) return handleError(err);
+  });
+
+
+/*
 var type1 = new Type({_id:1,type: "Technician"});
 var type2 = new Type({_id:2,type: "Owner"});
 
@@ -209,4 +249,4 @@ var tom = new Client({first_name: 'Tom',last_name: 'Hanks',phone_num:'1800999999
  
    landscape2.save(function (err) {
 	if (err) return handleError(err);
- });
+ });*/
