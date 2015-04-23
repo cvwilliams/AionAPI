@@ -131,7 +131,7 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 });
 
 // POST Routes
-app.post('/appointments/', function(req,res) {
+app.post('/appointments', function(req,res) {
 	var appointment;
 	appointment = new Appointment({
 		client_id: "5526eaa3b85c6e03006a88c3",
