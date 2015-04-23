@@ -10,8 +10,25 @@ var Client = require('./models/client');
 var Employee = require('./models/employee');
 var Type = require('./models/type');
  
+ var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+
+
+ 
 // Configure express
 app.configure('development', function() {
+	app.use(allowCrossDomain);
   mongoose.connect('mongodb://localhost/appointments');
 });
 
@@ -20,6 +37,7 @@ app.configure('test', function() {
 });
 
 app.configure('production', function() {
+	app.use(allowCrossDomain);
   mongoose.connect('mongodb://' + process.env.MONGOLAB_URI + '/appointments');
 });
 
@@ -167,7 +185,7 @@ app.listen(port, function() {
 module.exports = app;
 
 //Sample Data
-
+/*
  var type1 = new Type({_id:1,type: "Technician"});
  var type2 = new Type({_id:2,type: "Owner"});
  
@@ -207,7 +225,7 @@ module.exports = app;
  	if (err) return handleError(err);
   });
 
-
+*/
 /*
 var type1 = new Type({_id:1,type: "Technician"});
 var type2 = new Type({_id:2,type: "Owner"});
