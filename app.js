@@ -130,6 +130,27 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 		  });
 });
 
+// POST Routes
+app.post('/appointments/', function(req,res) {
+	var appointment;
+	appointment = new Appointment({
+		client_id: "5526eaa3b85c6e03006a88c3",
+		employee_id:  "54e1114f0fa1f90300000001",
+		notes: req.body.notes,
+		lat: req.body.lat,
+		lon: req.body.lon,
+		date: req.body.date
+	});
+	appointment.save(function (err) {
+		if (!err) {
+		  return console.log("created");
+		} else {
+		  return console.log(err);
+		}
+	});
+	return res.send(appointment);
+});
+
 // PUT Routes
 app.put('/appointments/:id/in', function(req, res) {
 	var timestamp = req.body.timestamp;
