@@ -7,7 +7,8 @@ var clientSchema= new Schema({
 	last_name: String,
 	address: String,
 	phone_num: String,
-	city: String
+	city: String,
+	state: String
 });
 
 clientSchema.virtual('client_id').get(function() {

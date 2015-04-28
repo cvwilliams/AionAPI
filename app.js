@@ -134,8 +134,8 @@ app.get('/appointments/:year/:month/:date', function(req, res) {
 app.post('/appointments', function(req,res) {
 	var appointment;
 	appointment = new Appointment({
-		client_id: "5526eaa3b85c6e03006a88c3",
-		employee_id:  "54e1114f0fa1f90300000001",
+		client_id: req.body.client,
+		employee_id:  req.body.employee,
 		notes: req.body.notes,
 		lat: req.body.lat,
 		lon: req.body.lon,
@@ -149,6 +149,26 @@ app.post('/appointments', function(req,res) {
 		}
 	});
 	return res.send(appointment);
+});
+
+app.post('/client', function(req,res) {
+	var client;
+	client = new Client({
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		address: req.body.address,
+		phone_num: req.body.phone_num,
+		city: req.body.city,
+		state: req.body.state
+	});
+	client.save(function (err) {
+		if (!err) {
+		  return console.log("created");
+		} else {
+		  return console.log(err);
+		}
+	});
+	return res.send(client);
 });
 
 // PUT Routes
