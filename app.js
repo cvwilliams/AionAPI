@@ -151,7 +151,7 @@ app.post('/appointments', function(req,res) {
 	return res.send(appointment);
 });
 
-app.post('/client', function(req,res) {
+app.post('/clients', function(req,res) {
 	var client;
 	client = new Client({
 		first_name: req.body.first_name,
