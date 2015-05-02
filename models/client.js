@@ -5,7 +5,7 @@ var ObjectId = Schema.ObjectId;
 var clientSchema= new Schema({
 	first_name: String,
 	last_name: String,
-	address: String,
+	address: String,	
 	phone_num: String,
 	city: String,
 	state: String
