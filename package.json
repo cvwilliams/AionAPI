@@ -1,15 +1,17 @@
-{"name": "wearable.api",
+{
+  "name": "aion.api",
   "description": "example api for creating wearable for odyssey project",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "3.x",
-    "mongoose": "3.8.x",
-    "supertest": "0.7.0",
-    "mocha": "1.11.0"
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "mocha": "1.11.0",
+    "mongoose": "^4.3.2",
+    "supertest": "^1.1.0"
   },
   "scripts": {
-    "test" : "mocha",
+    "test": "mocha",
     "start": "app.js"
   }
 }
