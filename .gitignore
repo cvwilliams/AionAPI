@@ -1,3 +1,4 @@
 .wercker
 nenv
 node_modules
+.idea
