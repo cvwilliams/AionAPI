@@ -1,6 +1,5 @@
-var request = require('supertest'),
-    express = require('express');
-
+var request = require('supertest');
+var express = require('express');
 var app = require('../app.js');
 /*
 describe('POST', function(){
@@ -14,7 +13,7 @@ describe('POST', function(){
     .expect(200, done);
   });
 });*/
-
+/*
 describe('GET', function(){
     this.timeout(15000);
   it('responds with a list of todo items in JSON', function(done){
@@ -25,7 +24,7 @@ describe('GET', function(){
     .expect(200, done);
   });
 });
-/*
+
 describe('GET', function(){
     this.timeout(15000);
   it('responds with a single todo item in JSON based on the author', function(done){
